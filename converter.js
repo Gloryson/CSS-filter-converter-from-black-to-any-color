@@ -289,7 +289,12 @@ function runConverter () {
   button.addEventListener('click', () => {
     let rgb = hexToRgb(input.value), color, solver, result;
     if (!rgb) {
-      alert('Invalid format!');
+      input.value = `Incorrect`;
+      input.classList.add('wrong__input');
+      setTimeout(() => {
+        input.value = ``;
+        input.classList.remove('wrong__input');
+      }, 1000);
       return;
     }
     let counter = 0;

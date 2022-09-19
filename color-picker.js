@@ -41,7 +41,7 @@ function runColorPicker () {
     };
   
   let picker = {
-    V: 100,
+    V:100,
     S:100,
     status:false,
       
@@ -66,7 +66,7 @@ function runColorPicker () {
         var top, rgb; 
         top = mouse.pageY(e) - pst;
         top = (top < 0 )? 0 : top;
-        top = (top > elem.h )? elem.h  : top;
+        top = (top > elem.h) ? elem.h : top;
         cAr.style.top = top-2 +"px";
         t =  Math.round(top /(elem.h/ 360));
         t = Math.abs(t - 360);
@@ -79,13 +79,19 @@ function runColorPicker () {
       }
       cAr.onmousedown = function () {
         pst = Obj.positY(canvaLine);
-        document.onmousemove = function(e){Line.posit(e);}
+        document.onmousemove = function (e) {
+          Line.posit(e);
+        }
       }
       cAr.onclick = Line.posit;
-      canvaLine.onclick = function (e) {Line.posit(e)};   
+      canvaLine.onclick = function (e) {
+        Line.posit(e)
+      };   
       canvaLine.onmousedown = function () {
         pst = Obj.positY(canvaLine);
-        document.onmousemove = function (e) {Line.posit(e);}
+        document.onmousemove = function (e) {
+          Line.posit(e);
+        }
       }
       document.onmouseup = function () {
         document.onmousemove = null; 
@@ -131,16 +137,16 @@ function runColorPicker () {
       Block.cPos = function (e) {
         var top, left, S, V;
         document.ondragstart = function() { return false;}
-        document.body.onselectstart = function() { return false; }
-        left = mouse.pageX(e) - bPstX - cW/2;
-        left = (left < 0)? 0 : left;
-        left = (left > bWi  )? bWi  : left;
+        // document.body.onselectstart = function() { return false; }
+        left = mouse.pageX(e) - bPstX - cW / 2;
+        left = (left < 0) ? 0 : left;
+        left = (left > bWi ) ? bWi : left;
         circle.style.left = left  + "px"; 
-        S = Math.ceil(left /pxX) ;
-        top = mouse.pageY(e)  - bPstY - cH/2;
-        top = (top > bHe  )? bHe : top;
-        top = (top < 0)? 0 : top;
-        circle.style.top = top   + "px";
+        S = Math.ceil(left / pxX);
+        top = mouse.pageY(e)  - bPstY - cH / 2;
+        top = (top > bHe ) ? bHe : top;
+        top = (top < 0) ? 0 : top;
+        circle.style.top = top  + "px";
         V = Math.ceil(Math.abs(top / pxY - 100));
         if (V < 50) circle.style.borderColor = "#fff";
         else circle.style.borderColor = "#000";
@@ -149,8 +155,12 @@ function runColorPicker () {
         picker.out_color.style.backgroundColor = "rgb(" + convert.hsv_rgb(Line.Hue, S, V)+ ")";
         let temp = convert.hsv_rgb(Line.Hue, S, V);
         input.value = `#${normalizeHexNum(temp[0])}${normalizeHexNum(temp[1])}${normalizeHexNum(temp[2])}`;
-      }     
-      block.onclick = function(e){Block.cPos(e);}
+      }  
+      block.onclick = function (e) {
+        bPstX = Obj.positX(block);
+        bPstY = Obj.positY(block);
+        Block.cPos(e);
+      }
       block.onmousedown  = function () {
         document.onmousemove = function (e) {
           bPstX = Obj.positX(block);
