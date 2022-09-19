@@ -4,9 +4,38 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <title>CSS filter converter from black to any color</title>
 </head>
 <body>
   
+  <div class="picker" id="primary_block" >
+    <div id="line">
+      <div id="arrows">
+        <div class="left_arrow"></div>
+        <div class="right_arrow"></div>
+      </div>
+    </div>
+    <div id="block_picker">
+      <img src="./gradient.png" class="bk_img">
+      <div class="circle" id="circle"></div>
+    </div>
+    <div id="out_color" class="out_color"></div>
+  </div>
+
+  <input type="text" placeholder="Your color"/>
+  <div class="button">Convert</div>
+  <div class="pixel filterPixel"></div>
+  <p class="filterDetail"></p>
+  
+  
+
+
+
+
+
+  <script type="module" src="./index.js"></script>
+
 </body>
 </html>
