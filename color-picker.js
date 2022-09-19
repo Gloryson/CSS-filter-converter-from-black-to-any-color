@@ -1,4 +1,6 @@
 function runColorPicker () {
+
+  let input = document.querySelector('input');
   
   let mouse = {
     pageX : function (b) {
@@ -44,12 +46,12 @@ function runColorPicker () {
     status:false,
       
     init: function () {
-      var id_elements = {primary: "primary_block", arrows: "arrows", block: "block_picker", circle: "circle", line: "line"}; 
-      var s ={h:180, w:20, th: id_elements.arrows, bk: id_elements.block, line: id_elements.line};
+      var id_elements = {primary: "picker", arrows: "gradient__line__arrows", block: "block__picker", circle: "circle__pointer", line: "gradient__line"}; 
+      var s = {h:200, w:20, th: id_elements.arrows, bk: id_elements.block, line: id_elements.line};
       Line.init(s);
       var b = {block: id_elements.block, circle: id_elements.circle};
       Block.init(b);
-      picker.out_color = document.getElementById("out_color");
+      picker.out_color = document.getElementById("picker__output__color");
     }
   };
     
@@ -70,8 +72,10 @@ function runColorPicker () {
         t = Math.abs(t - 360);
         t = (t == 360)? 0 : t;                
         Line.Hue = t;
-        bk.style.backgroundColor = "rgb("+convert.hsv_rgb(t,100,100)+")";
-        picker.out_color.style.backgroundColor= "rgb("+convert.hsv_rgb(t,picker.S,picker.V)+")";
+        bk.style.backgroundColor = "rgb(" + convert.hsv_rgb(t, 100, 100) + ")";
+        picker.out_color.style.backgroundColor= "rgb(" + convert.hsv_rgb(t, picker.S, picker.V) + ")";
+        let temp = convert.hsv_rgb(t, picker.S, picker.V);
+        input.value = `#${normalizeHexNum(temp[0])}${normalizeHexNum(temp[1])}${normalizeHexNum(temp[2])}`;
       }
       cAr.onmousedown = function () {
         pst = Obj.positY(canvaLine);
@@ -81,7 +85,7 @@ function runColorPicker () {
       canvaLine.onclick = function (e) {Line.posit(e)};   
       canvaLine.onmousedown = function () {
         pst = Obj.positY(canvaLine);
-        document.onmousemove = function(e){Line.posit(e);}
+        document.onmousemove = function (e) {Line.posit(e);}
       }
       document.onmouseup = function () {
         document.onmousemove = null; 
@@ -138,14 +142,13 @@ function runColorPicker () {
         top = (top < 0)? 0 : top;
         circle.style.top = top   + "px";
         V = Math.ceil(Math.abs(top / pxY - 100));
-        if (V <50) circle.style.borderColor = "#fff";
+        if (V < 50) circle.style.borderColor = "#fff";
         else circle.style.borderColor = "#000";
         picker.S = S;
         picker.V = V;
-        picker.out_color.style.backgroundColor = "rgb("+convert.hsv_rgb(Line.Hue,S,V)+")";
-        var _res = convert.hsv_rgb(Line.Hue,S,V);
-        _res = _res[0].toString(16)+""+_res[1].toString(16)+""+_res[2].toString(16);
-        console.log(_res);
+        picker.out_color.style.backgroundColor = "rgb(" + convert.hsv_rgb(Line.Hue, S, V)+ ")";
+        let temp = convert.hsv_rgb(Line.Hue, S, V);
+        input.value = `#${normalizeHexNum(temp[0])}${normalizeHexNum(temp[1])}${normalizeHexNum(temp[2])}`;
       }     
       block.onclick = function(e){Block.cPos(e);}
       block.onmousedown  = function () {
@@ -155,19 +158,19 @@ function runColorPicker () {
           Block.cPos(e);
         }
       }
-      document.onmouseup = function() {
+      document.onmouseup = function () {
         document.onmousemove = null;
       }
     }     
   };
     
   let convert = {
-    hsv_rgb: function (H,S,V) {
+    hsv_rgb: function (H, S, V) {
       var f, p, q , t, lH, R, G, B;
-      S /=100;
-      V /=100;
+      S /= 100;
+      V /= 100;
       lH = Math.floor(H / 60);
-      f = H/60 - lH;
+      f = H / 60 - lH;
       p = V * (1 - S); 
       q = V *(1 - S*f);
       t = V* (1 - (1-f)* S);
@@ -179,10 +182,15 @@ function runColorPicker () {
         case 4: R = t; G = p; B = V; break;
         case 5: R = V; G = p; B = q; break;
       }   
-       return [parseInt(R*255), parseInt(G*255), parseInt(B*255)];
+       return [parseInt(R * 255), parseInt(G * 255), parseInt(B * 255)];
     }   
   };
   
+  function normalizeHexNum (num) {
+    num = num.toString(16);
+    return num.length > 1 ? num : num + num;
+  }
+
   picker.init();
 }
 

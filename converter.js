@@ -1,9 +1,7 @@
-'use strict';
-
 let button = document.querySelector('.button');
 let input = document.querySelector('input');
-let filterPixel = document.querySelector('.filterPixel');
-let filterDetail = document.querySelector('.filterDetail');
+let resultColor = document.querySelector('.result__color');
+let cssProperty = document.querySelector('.css__property');
 
 function runConverter () {
 
@@ -294,15 +292,17 @@ function runConverter () {
       alert('Invalid format!');
       return;
     }
-
+    let counter = 0;
     do {
+      if (counter > 50) break;
       color = new Color(rgb[0], rgb[1], rgb[2]);
       solver = new Solver(color);
       result = solver.solve();
-    } while (result.loss > 0.05); 
+      counter++;
+    } while (result.loss > 0.1); 
 
-    filterPixel.setAttribute('style', result.filter);
-    filterDetail.textContent = result.filter;
+    resultColor.setAttribute('style', result.filter);
+    cssProperty.textContent = result.filter;
   })
   
 }

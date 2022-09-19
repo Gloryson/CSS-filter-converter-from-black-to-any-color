@@ -10,24 +10,26 @@
 </head>
 <body>
   
-  <div class="picker" id="primary_block" >
-    <div id="line">
-      <div id="arrows">
-        <div class="left_arrow"></div>
-        <div class="right_arrow"></div>
+  <div class="container">
+    <div id="picker">
+      <div id="block__picker">
+        <img src="./gradient.png" class="block__picker__img">
+        <div class="circle__pointer" id="circle__pointer"></div>
+      </div>
+      <div id="gradient__line">
+        <div id="gradient__line__arrows">
+          <div>&#9658;</div>
+          <div>&#9668;</div>
+        </div>
       </div>
     </div>
-    <div id="block_picker">
-      <img src="./gradient.png" class="bk_img">
-      <div class="circle" id="circle"></div>
-    </div>
-    <div id="out_color" class="out_color"></div>
+    <div id="picker__output__color"></div>
+  
+    <input type="text" placeholder="Your color"/>
+    <div class="button">Convert</div>
+    <div class="result__color"></div>
+    <div class="css__property"></div>
   </div>
-
-  <input type="text" placeholder="Your color"/>
-  <div class="button">Convert</div>
-  <div class="pixel filterPixel"></div>
-  <p class="filterDetail"></p>
   
   
 
