@@ -197,8 +197,10 @@ function runColorPicker () {
   };
   
   function normalizeHexNum (num) {
+    if (num < 0) return '00';
+    if (num > 255) return 'FF';
     num = num.toString(16);
-    return num.length > 1 ? num : num + num;
+    return num.length === 1 ? `0${num}` : num;
   }
 
   picker.init();
