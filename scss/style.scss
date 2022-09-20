@@ -19,7 +19,7 @@
   background-color: #eeeeee;
 }
 
-#picker {
+.picker {
 	display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +27,7 @@
 	width: 100%;
 }
 
-#block__picker {
+.block__picker {
 	background-color: #ff0000;
 	height: 200px;
 	width: 200px;
@@ -41,16 +41,16 @@
   box-shadow: #cccccc 1px 1px 5px 0px;
 }
 
-#gradient__line {
+.gradient__line {
   display: flex;
   justify-content: center;
 	position: relative;
-	cursor: pointer;
+	cursor: crosshair;
 	user-select: none; 
 	
 }
 
-#gradient__line__arrows {
+.gradient__line__arrows {
   width: 42px;
   display: flex;
   height: 3px;
@@ -58,22 +58,23 @@
   align-items: center;
 	position: absolute;
   top: -1px;
-	cursor: pointer;
+	cursor: crosshair;
 	user-select: none;
   
   div {
     font-size: 1.1rem;
+    cursor: pointer;
   }
 }
 
-#picker__output__color {
+.picker__output__color {
 	width: 150px;
 	height: 70px;
   box-shadow: #cccccc 1px 1px 5px 0px;
   border-radius: 7px;
 }
 
-#circle__pointer {
+.circle__pointer {
 	width: 8px;
 	height: 8px;
 	border: 1px solid black;
