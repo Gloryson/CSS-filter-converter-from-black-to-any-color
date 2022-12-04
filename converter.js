@@ -309,9 +309,7 @@ function runConverter () {
     resultColor.setAttribute('style', result.filter);
     cssProperty.textContent = result.filter;
     
-    setTimeout(() => {
-      navigator.clipboard.writeText(result.filter).then(() => {}).catch(() => {});
-    }, 500);
+    navigator.clipboard.writeText(result.filter).then(() => {}).catch(() => {});
   })
   
 }
