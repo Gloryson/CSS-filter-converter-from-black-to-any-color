@@ -308,6 +308,8 @@ function runConverter () {
 
     resultColor.setAttribute('style', result.filter);
     cssProperty.textContent = result.filter;
+    
+    navigator.clipboard.writeText(result.filter).then(() => {}, () => {});
   })
   
 }
