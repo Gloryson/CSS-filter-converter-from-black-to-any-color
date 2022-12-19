@@ -309,7 +309,15 @@ function runConverter () {
     resultColor.setAttribute('style', result.filter);
     cssProperty.textContent = result.filter;
     
-    navigator.clipboard.writeText(result.filter).then(() => {}).catch(() => {});
+//     navigator.clipboard.writeText(result.filter).then(() => {}).catch(() => {});
+    navigator.clipboard.writeText(`${result.filter}`).then(
+      () => {
+        console.log('The text was succesfully written to the clipboard');
+      },
+      () => {
+        console.log('Error writing text to clipboard');
+      }
+    );
   })
   
 }
