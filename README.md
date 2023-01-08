@@ -1,4 +1,4 @@
-# CSS-filter-converter-from-black-to-any-color
+## CSS-filter-converter-from-black-to-any-color
 This mini app create css filter property which change black color to target color.
 
 Converter available at [this link](https://gloryson.github.io/CSS-filter-converter-from-black-to-any-color)
